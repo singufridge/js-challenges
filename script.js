@@ -1,3 +1,5 @@
+let flag = false;
+
 document.addEventListener('keydown', (event) => {
     console.log(event);
 });
