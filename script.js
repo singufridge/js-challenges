@@ -20,7 +20,7 @@ function updateChanges() {
             p.textContent = localStorage.getItem(localStorage.key(i));
             document.body.appendChild(p);
 
-        } else if (localStorage.getItem(localStorage.key(i)) % 3 === 0) { 
+        } else if (localStorage.getItem(localStorage.key(i)) % 2 === 0) { 
             console.log("divisiblwe by 3")
         } else {
             console.log(":(")
