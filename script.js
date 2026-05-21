@@ -1,12 +1,18 @@
-let flag = false;
 const flag = {
-    internalVal = false,
+    oldVal: false,
+    internalVal : false,
     set value(val) {
+        oldVal = this.internalVal;
         this.internalVal = val;
         this.onChange();
     },
     onChange() {
-        //delete stuff when the flag changes
+        if ((oldVal == false) && (this.internalVal == true)) {
+            window.document.body.style.backgroundColor = "white";
+            //placeholder for false -> true
+        } else if ((oldVal == true) && (this.internalVal == false)){
+            window.document.body.style.backgroundColor = "purple";
+        }
     }
 }
 
@@ -15,22 +21,19 @@ let eventNum = 0;
 const listEl = document.getElementById("list");
 
 document.addEventListener('keydown', (event) => {
-    if (flag.value == false) {
-        flag.value = true;
-    }
+    flag.value = true;
     console.log(event);
     //keydownIdNum = keyCode + timestamp
     let localStorageNum = (eventNum * 2) -1;
     let keyVal = Math.round(event.keyCode + event.timeStamp);
     window.localStorage.setItem(localStorageNum, keyVal);
+    updateChanges(localStorageNum, keyVal);
     //eventNum still consecutive
     eventNum++;
 });
 
 document.addEventListener('click', (event) => {
-    if (flag.value == true) {
-        flag.value = false;
-    }
+    flag.value = false;
     console.log(event);
     //pointerVal = screenX + screenY + timestamp
     let pointerVal = Math.round(event.screenX + event.screenY + event.timeStamp);
