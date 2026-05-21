@@ -6,19 +6,22 @@ const listEl = document.getElementById("list");
 document.addEventListener('keydown', (event) => {
     console.log(event);
     //keydownIdNum = keyCode + timestamp
+    let localStorageNum = (eventNum * 2) -1;
     let keyVal = Math.round(event.keyCode + event.timeStamp);
-    window.localStorage.setItem(eventNum, keyVal);
+    window.localStorage.setItem(localStorageNum, keyVal);
+    //eventNum still consecutive
     eventNum++;
 });
 
 document.addEventListener('click', (event) => {
-
     console.log(event);
     //pointerVal = screenX + screenY + timestamp
     let pointerVal = Math.round(event.screenX + event.screenY + event.timeStamp);
-    window.localStorage.setItem(eventNum, pointerVal);
+    //localStorageNum is even for clicks, odd for keypress
+    let localStorageNum = eventNum * 2;
+    window.localStorage.setItem(localStorageNum, pointerVal);
+    updateChanges(localStorageNum, pointerVal);
     eventNum++;
-    updateChanges(eventNum, pointerVal);
 });
 
 
