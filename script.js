@@ -16,23 +16,22 @@ document.addEventListener('click', (event) => {
     let pointerVal = Math.round(event.screenX + event.screenY + event.timeStamp);
     window.localStorage.setItem(eventNum, pointerVal);
     eventNum++;
-    updateChanges();
+    updateChanges(eventNum, pointerVal);
 });
 
 
-function updateChanges() {
-    for (i = 0; i < localStorage.length; i++) {
-        if (localStorage.getItem(localStorage.key(i)) > 0) {
-            console.log("create p")
+function updateChanges(key, val) {
+    if (val > 1) {
+        console.log("create p")
 
-            const p = document.createElement('p');
-            p.textContent = localStorage.getItem(localStorage.key(i));
-            document.body.appendChild(p);
+        const p = document.createElement('p');
+        p.textContent = val;
+        p.id = key;
+        document.body.appendChild(p);
 
-        } else if (localStorage.getItem(localStorage.key(i)) % 2 === 0) { 
-            console.log("divisiblwe by 3")
-        } else {
-            console.log(":(")
-        }
+    } else if (val % 2 === 0) { 
+        console.log("divisiblwe by 2")
+    } else {
+        console.log(":(")
     }
 }
