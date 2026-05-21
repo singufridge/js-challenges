@@ -6,4 +6,5 @@ document.addEventListener('keydown', (event) => {
 
 document.addEventListener('click', (event) => {
     console.log(event);
+    window.localStorage.setItem("pointerId", event.pointerId)
 });
