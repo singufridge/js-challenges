@@ -1,7 +1,21 @@
 let flag = false;
+const flag = {
+    internalVal = false,
+    set value(val) {
+        this.internalVal = val;
+        this.onChange();
+    },
+    onChange() {
+        //delete stuff when the flag changes
+    }
+}
+
 let eventNum = 0;
 
 document.addEventListener('keydown', (event) => {
+    if (flag.value == false) {
+        flag.value = true;
+    }
     console.log(event);
     //keydownIdNum = keyCode + timestamp
     let keyVal = Math.round(event.keyCode + event.timeStamp);
@@ -10,7 +24,9 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('click', (event) => {
-
+    if (flag.value == true) {
+        flag.value = false;
+    }
     console.log(event);
     //pointerVal = screenX + screenY + timestamp
     let pointerVal = Math.round(event.screenX + event.screenY + event.timeStamp);
